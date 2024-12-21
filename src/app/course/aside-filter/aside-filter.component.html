@@ -1,0 +1,52 @@
+<div class="filterForm py-2">
+  
+  <h5>Filter </h5>
+
+  <form [formGroup]="myForm">
+    <div class="subject mb-2">
+      <h6>Subject:</h6>
+      @for (data of subjectList; track $index) {
+      <div class="form-group">
+        <input
+          type="checkbox"
+          [id]="data.name"
+          (change)="onChangeSubject(data.id, $any($event.target)?.checked)"
+        />
+        <label [for]="data.name">{{ data.name }}</label
+        ><br />
+      </div>
+      }
+    </div>
+    <div class="language mb-2">
+      <h6>language:</h6>
+      @for (data of langList; track $index) {
+
+      <div class="form-group">
+        <input
+          type="checkbox"
+          [id]="data.name"
+          (change)="onChangeLang(data.id, $any($event.target)?.checked)"
+        />
+        <label [for]="data.name">{{ data.name }}</label
+        ><br />
+      </div>
+      }
+    </div>
+    <div class="level mb-2">
+      <h6>level:</h6>
+      @for (data of levelsList; track $index) {
+      <div class="form-group">
+        <input
+          type="checkbox"
+          [id]="data.name"
+          (change)="onChangeLevel(data.id, $any($event.target)?.checked)"
+        />
+        <label [for]="data.name">{{ data.name }}</label
+        ><br />
+      </div>
+      }
+    </div>
+  </form>
+  <button class="btn btn-primary" (click)="onFilter()">Filter</button>
+  <!-- <pre>Form values: {{ myForm.value | json }}</pre> -->
+</div>

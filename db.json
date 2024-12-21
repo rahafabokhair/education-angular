@@ -1,0 +1,235 @@
+{
+  "user": [
+    {
+      "name": "admin",
+      "email": "admin@gmail.com",
+      "password": "123456",
+      "mobNumber": "123456",
+      "gender": "Male",
+      "role": "admin",
+      "age": 30,
+      "image": "C:\\fakepath\\user-01.jpg",
+      "id": 1
+    },
+    {
+      "name": "user1",
+      "email": "user1@gmail.com",
+      "password": "123789",
+      "mobNumber": "123456",
+      "gender": "Female",
+      "role": "admin",
+      "age": 30,
+      "image": "C:\\fakepath\\user-01.jpg",
+      "id": 3
+    },
+    {
+      "name": "user2",
+      "email": "user2@a.com",
+      "password": "123789",
+      "mobNumber": "2222222",
+      "gender": "Female",
+      "role": "teatcher",
+      "age": 40,
+      "image": "C:\\fakepath\\cat-1.jpg",
+      "id": 4
+    }
+  ],
+  "courses": [
+    {
+      "title": "'Web design & development courses for beginner'",
+      "startDate": "2024-12-01",
+      "endDate": "2025-05-30",
+      "duration": "5 months and 29 days",
+      "authors": [
+        {
+          "firstName": "Maximilian",
+          "lastName": "'Schwarzmüller'",
+          "photo": "C:\\fakepath\\1773427702.jpg"
+        }
+      ],
+      "description": " This course starts from scratch, you neither need to know Angular 1 nor Angular",
+      "price": "66",
+      "coursePhoto": "../courses/course-3.jpg",
+      "courseDetPhoto": "../carousel/carousel-1.jpg",
+      "subjectId": 1,
+      "Level": 1,
+      "language": 2,
+      "isTopRated": true,
+      "id": 1
+    },
+    {
+      "title": "'Web design & development courses for beginner'",
+      "startDate": "2024-12-05",
+      "endDate": "2024-12-31",
+      "duration": "0 months and 26 days",
+      "authors": [
+        {
+          "firstName": "Maximilian",
+          "lastName": "'Schwarzmüller'",
+          "photo": "../users/user-01.jpg"
+        }
+      ],
+      "description": " This course starts from scratch, you neither need to know Angular 1 nor Angular",
+      "price": "66",
+      "coursePhoto": "../courses/course-3.jpg",
+      "courseDetPhoto": "../carousel/carousel-1.jpg",
+      "subjectId": 2,
+      "Level": 1,
+      "language": 3,
+      "isTopRated": true,
+      "id": 2
+    },
+    {
+      "title": "'Web design & development courses for beginner'",
+      "startDate": "2024-12-01",
+      "endDate": "2025-01-11",
+      "duration": "1 months and 10 days",
+      "authors": [
+        {
+          "firstName": "Maximilian",
+          "lastName": "'Schwarzmüller'",
+          "photo": "../users/user-01.jpg"
+        }
+      ],
+      "description": " This course starts from scratch, you neither need to know Angular 1 nor Angular",
+      "price": "66",
+      "coursePhoto": "../courses/course-3.jpg",
+      "courseDetPhoto": "../carousel/carousel-1.jpg",
+      "subjectId": 1,
+      "Level": 2,
+      "language": 3,
+      "isTopRated": true,
+      "id": 3
+    },
+    {
+      "title": "'Web design & development courses for beginner'",
+      "startDate": "2024-12-02",
+      "endDate": "2024-12-04",
+      "duration": "0 months and 2 days",
+      "authors": [
+        {
+          "firstName": "Maximilian",
+          "lastName": "'Schwarzmüller'",
+          "photo": "../users/user-01.jpg"
+        }
+      ],
+      "description": " This course starts from scratch, you neither need to know Angular 1 nor Angular",
+      "price": "66",
+      "coursePhoto": "../courses/course-3.jpg",
+      "courseDetPhoto": "../carousel/carousel-1.jpg",
+      "subjectId": 1,
+      "Level": 2,
+      "language": 3,
+      "isTopRated": true,
+      "id": 4
+    },
+    {
+      "title": "'Web design & development courses for beginner'",
+      "startDate": "2024-12-01",
+      "endDate": "2024-12-11",
+      "duration": "0 months and 10 days",
+      "authors": [
+        {
+          "firstName": "Maximilian",
+          "lastName": "'Schwarzmüller'",
+          "photo": "../users/user-01.jpg"
+        }
+      ],
+      "description": " This course starts from scratch, you neither need to know Angular 1 nor Angular",
+      "price": "66",
+      "coursePhoto": "../courses/course-3.jpg",
+      "courseDetPhoto": "../carousel/carousel-1.jpg",
+      "subjectId": 3,
+      "Level": 2,
+      "language": 3,
+      "isTopRated": true,
+      "id": 5
+    },
+    {
+      "title": "Web design & development",
+      "startDate": "2024-12-04",
+      "endDate": "2024-12-09",
+      "duration": "0 months and 5 days",
+      "authors": [
+        {
+          "firstName": "Maximilian",
+          "lastName": "aa",
+          "photo": "C:\\fakepath\\user-01.jpg"
+        }
+      ],
+      "description": "description",
+      "price": "22",
+      "coursePhoto": "C:\\fakepath\\course-3.jpg",
+      "courseDetPhoto": "C:\\fakepath\\course-3.jpg",
+      "subjectId": 4,
+      "Level": 1,
+      "language": 2,
+      "isTopRated": true,
+      "id": 6
+    }
+  ],
+  "subjects": [
+    {
+      "id": 1,
+      "image": "../subjects/cat-1.jpg",
+      "name": "Web Design",
+      "count": "100",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "image": "../subjects/cat-2.jpg",
+      "name": "Development",
+      "count": "100",
+      "checked": false
+    },
+    {
+      "id": 3,
+      "image": "../subjects/cat-3.jpg",
+      "name": "Game Design",
+      "count": "100",
+      "checked": false
+    },
+    {
+      "id": 4,
+      "image": "../subjects/cat-4.jpg",
+      "name": "Apps Design",
+      "count": "100",
+      "checked": false
+    }
+  ],
+  "Level": [
+    {
+      "id": 1,
+      "name": "Beginner",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "name": "Intermediate",
+      "checked": false
+    },
+    {
+      "id": 3,
+      "name": "Advanced",
+      "checked": false
+    }
+  ],
+  "Language": [
+    {
+      "id": 1,
+      "name": "Arabic",
+      "checked": false
+    },
+    {
+      "id": 2,
+      "name": "English",
+      "checked": false
+    },
+    {
+      "id": 3,
+      "name": "Spanish",
+      "checked": false
+    }
+  ]
+}

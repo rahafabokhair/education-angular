@@ -1,0 +1,52 @@
+/* .carousel-inner .carousel-item img{
+    height: 400px;
+} */
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+  background-image: none;
+}
+
+.carousel-control-prev-icon {
+  position: absolute;
+  left: -80px;
+  outline: none;
+
+}
+
+.carousel-control-prev-icon:before {
+  display: inline-block;
+  font-family: 'FontAwesome';
+  color: #2a2a2a;
+  font-size: 25px;
+  font-weight: 700;
+  content: '\f104';
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  line-height: 48px;
+  border: 1px solid #2a2a2a;
+}
+
+.carousel-control-next-icon:before {
+  display: inline-block;
+  font-family: 'FontAwesome';
+  color: #2a2a2a;
+  font-size: 25px;
+  font-weight: 700;
+  content: '\f105';
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  line-height: 48px;
+  border: 1px solid #2a2a2a;
+}
+
+.carousel-control-next-icon {
+  outline: none;
+  position: absolute;
+  right: -70px;
+}
+
+.men-item-carousel .card img{
+  width: 100px;
+}

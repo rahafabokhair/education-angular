@@ -1,0 +1,217 @@
+<div class="container">
+  <div class="row">
+    <div>
+      <button
+        type="button"
+        class="btn btn-primary mb-2"
+        data-bs-toggle="modal"
+        data-bs-target="#subModal"
+        (click)="OnAddsubjectPopup()"
+      >
+        add new Subject
+      </button>
+    </div>
+
+    <table class="table subjecttbl">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">name</th>
+          <th scope="col">count</th>
+          <th scope="col">image</th>
+          <th scope="col">checked</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of subjectList; track $index) {
+        <tr>
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.name }}</td>
+          <td>{{ item.count }}</td>
+          <td><img [src]="item.image | imgpath" alt="" /></td>
+          <td>{{ item.checked }}</td>
+          <td>
+            <span
+              (click)="OnUpdateSubPopup(item.id!)"
+              data-bs-toggle="modal"
+              data-bs-target="#subModal"
+              aria-hidden="true"
+            >
+              <i class="fa fa-pencil fa-lg m-1"></i>
+            </span>
+            
+            <span
+            (click)="onDeletePopup(item.id!)"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteModel"
+            ><i class="fa fa-trash fa-lg m-1"></i>
+          </span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="subModal"
+      tabindex="-1"
+      aria-labelledby="subModalLabel"
+      aria-hidden="false"
+      aria-modal="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="subModalLabel">
+              {{ !addEditSubject ? "Add" : "update" }} New Course
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="subForm">
+              <div class="row">
+                <div class="form-group mb-2">
+                  <label>Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="name"
+                    [ngClass]="{
+                      'is-invalid': addEditSubject && f['name'].errors
+                    }"
+                  />
+
+                  <div
+                    *ngIf="addEditSubject && f['name'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['name'].errors['required']">
+                      name is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-2">
+                  <label>count</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    formControlName="count"
+                    [ngClass]="{
+                      'is-invalid': addEditSubject && f['count'].errors
+                    }"
+                  />
+
+                  <div
+                    *ngIf="addEditSubject && f['count'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['count'].errors['required']">
+                      count is required
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 form-group mb-1">
+                  <label for="UploadimgControlInput" class="form-label"
+                    >Upload Subject Image :
+                  </label>
+                  <span *ngIf="addEditSubject">{{ imageName }}</span>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="UploadimgControlInput"
+                    formControlName="image"
+                    [ngClass]="{
+                      'is-invalid': addEditSubject && f['image'].errors
+                    }"
+                    placeholder="Upload Image"
+                  />
+                  <div
+                    *ngIf="addEditSubject && f['image'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['image'].errors?.['required']">
+                      Image is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              #closeUpdateAdd
+            >
+              Close
+            </button>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="addNewSubject()"
+              *ngIf="!addEditSubject"
+              [disabled]="!subForm.valid"
+            >
+              Add
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="updateProduct()"
+              *ngIf="addEditSubject"
+              [disabled]="!subForm.valid"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    <!-- Delete Modal -->
+    <div
+      class="modal fade"
+      id="deleteModel"
+      tabindex="-1"
+      aria-labelledby="deleteModelLabel"
+      aria-hidden="false"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            Are you sure you want do delete this item?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              #closebutton
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deletProduct()"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>

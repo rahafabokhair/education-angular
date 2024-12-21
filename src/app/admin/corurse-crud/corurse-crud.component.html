@@ -1,0 +1,485 @@
+<!-- Button trigger modal -->
+<div class="container">
+  <div class="row">
+    <div>
+      <button
+        type="button"
+        class="btn btn-primary mb-2"
+        data-bs-toggle="modal"
+        data-bs-target="#courseModal"
+        (click)="OnAddCoursePopup()"
+      >
+        add new Course
+      </button>
+    </div>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Aurthor</th>
+          <th scope="col">Price</th>
+          <th scope="col">Language</th>
+          <th scope="col">Duration</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of courseList; track $index) {
+        <tr>
+          <th scope="row">{{ item.id }}</th>
+          <td>{{ item.title }}</td>
+          <td>{{ item.authors[0].firstName }}</td>
+          <td>{{ item.price }}$</td>
+          <td>{{ item.language }}</td>
+          <td>{{ item.duration }}</td>
+          <td>
+            <span
+              (click)="OnUpdateCoursePopup(item.id!)"
+              data-bs-toggle="modal"
+              data-bs-target="#courseModal"
+              aria-hidden="true"
+            >
+              <i class="fa fa-pencil fa-lg m-1"></i>
+            </span>
+
+            <span
+            (click)="onDeletePopup(item.id!)"
+            data-bs-toggle="modal"
+            data-bs-target="#deleteModel"
+            ><i class="fa fa-trash fa-lg m-1"></i>
+          </span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="courseModal"
+      tabindex="-1"
+      aria-labelledby="courseModalLabel"
+      aria-hidden="false"
+      aria-modal="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="courseModalLabel">
+              {{ !addEditCourse ? "Add" : "update" }} New Course
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="courseForm">
+              <div class="row">
+                <div class="form-group mb-2">
+                  <label>Title</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="title"
+                    [ngClass]="{
+                      'is-invalid': addEditCourse && f['title'].errors
+                    }"
+                  />
+
+                  <div
+                    *ngIf="addEditCourse && f['title'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['title'].errors['required']">
+                      title is required
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group mb-2">
+                  <label>price</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="price"
+                    [ngClass]="{
+                      'is-invalid': addEditCourse && f['price'].errors
+                    }"
+                  />
+
+                  <div
+                    *ngIf="addEditCourse && f['price'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['price'].errors['required']">
+                      price is required
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 form-group">
+                  <label class="control-label">Start Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    formControlName="startDate"
+                    style="width: auto"
+                    [ngClass]="{
+                      'is-invalid': addEditCourse && f['startDate'].errors
+                    }"
+                  />
+
+                  <div
+                    *ngIf="addEditCourse && f['startDate'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['startDate'].errors['required']">
+                      date is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 form-group">
+                  <label class="control-label">End Date</label>
+                  <input
+                    type="date"
+                    class="form-control"
+                    formControlName="endDate"
+                    style="width: auto"
+                    [ngClass]="{
+                      'is-invalid': addEditCourse && f['endDate'].errors
+                    }"
+                  />
+
+                  <div
+                    *ngIf="addEditCourse && f['endDate'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['endDate'].errors['required']">
+                      date is required
+                    </div>
+                  </div>
+                </div>
+                <!-- Author -->
+                <div class="col-6 form-group mb-2">
+                  <label>Author First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="authorFName"
+                    [ngClass]="{
+                      'is-invalid': addEditCourse && f['authorFName'].errors
+                    }"
+                  />
+
+                  <div
+                    *ngIf="addEditCourse && f['authorFName'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['authorFName'].errors['required']">
+                      First Name is required
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6 form-group mb-2">
+                  <label>Author Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    formControlName="authorLName"
+                    [ngClass]="{
+                      'is-invalid': addEditCourse && f['authorLName'].errors
+                    }"
+                  />
+
+                  <div
+                    *ngIf="addEditCourse && f['authorLName'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['authorLName'].errors['required']">
+                      Last Name is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 form-group mb-1">
+                  <label for="UploadimgControlInput" class="form-label"
+                    >Upload Author Image :
+                  </label>
+                  <span *ngIf="addEditCourse">{{ authimageName }}</span>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="UploadimgControlInput"
+                    formControlName="authorPhoto"
+                    (change)="uploadImage($event)"
+                    [ngClass]="{
+                      'is-invalid': addEditCourse && f['authorPhoto'].errors
+                    }"
+                    placeholder="Upload Image"
+                  />
+                  <div
+                    *ngIf="addEditCourse && f['authorPhoto'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['authorPhoto'].errors?.['required']">
+                      Image is required
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Author End-->
+
+                <div class="col-12 form-group mb-1">
+                  <label for="UploadimgControlInput" class="form-label"
+                    >Upload course File/Image :
+                  </label>
+                  <span *ngIf="addEditCourse">{{ courseimageName }}</span>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="UploadimgControlInput"
+                    formControlName="coursePhoto"
+                    [ngClass]="{
+                      'is-invalid': addEditCourse && f['coursePhoto'].errors
+                    }"
+                    placeholder="Upload Image"
+                  />
+                  <div
+                    *ngIf="addEditCourse && f['coursePhoto'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['coursePhoto'].errors?.['required']">
+                      Image is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 form-group mb-1">
+                  <label for="UploadimgControlInput" class="form-label"
+                    >Upload course details File/Image :
+                  </label>
+                  <span *ngIf="addEditCourse">{{ courseDetimageName }}</span>
+                  <input
+                    type="file"
+                    class="form-control"
+                    id="UploadimgControlInput"
+                    formControlName="courseDetPhoto"
+                    [ngClass]="{
+                      'is-invalid': addEditCourse && f['courseDetPhoto'].errors
+                    }"
+                    placeholder="Upload Image"
+                  />
+                  <div
+                    *ngIf="addEditCourse && f['courseDetPhoto'].errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['courseDetPhoto'].errors?.['required']">
+                      Image is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 form-group mb-1">
+                  <label>Subject</label>
+
+                  <div class="mb-3">
+                    <select class="form-select" formControlName="subject">
+                      <option
+                        *ngFor="let item of subjectList"
+                        [ngValue]="item.id"
+                      >
+                        {{ item.name }}
+                      </option>
+                    </select>
+
+                    <!-- error block -->
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="addEditCourse && f['subject']?.errors"
+                      class="invalid-feedback"
+                    >
+                      <sup>*</sup>Please enter your Subject name
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 form-group mb-1">
+                  <label>level</label>
+
+                  <div class="mb-3">
+                    <select class="form-select" formControlName="level">
+                      <option
+                        *ngFor="let item of levelList"
+                        [ngValue]="item.id"
+                      >
+                        {{ item.name }}
+                      </option>
+                    </select>
+
+                    <!-- error block -->
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="addEditCourse && f['level']?.errors"
+                      class="invalid-feedback"
+                    >
+                      <sup>*</sup>Please enter your level name
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 form-group mb-1">
+                  <label>language</label>
+
+                  <div class="mb-3">
+                    <select class="form-select" formControlName="language">
+                      <option
+                        *ngFor="let item of languageList"
+                        [ngValue]="item.id"
+                      >
+                        {{ item.name }}
+                      </option>
+                    </select>
+
+                    <!-- error block -->
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="addEditCourse && f['language']?.errors"
+                      class="invalid-feedback"
+                    >
+                      <sup>*</sup>Please enter your Subject name
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group mb-2">
+                  <label for="exampleFormControlSelect2">is Top Rated ?</label
+                  ><br />
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      formControlName="isTopRated"
+                      [value]="true"
+                      [ngClass]="{
+                        'is-invalid': addEditCourse && f['isTopRated'].errors
+                      }"
+                    />
+                    <label class="form-check-label" for="inlineRadio1"
+                      >yes</label
+                    >
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      formControlName="isTopRated"
+                      [value]="false"
+                      [ngClass]="{
+                        'is-invalid': addEditCourse && f['isTopRated'].errors
+                      }"
+                    />
+                    <label class="form-check-label" for="inlineRadio2"
+                      >No</label
+                    >
+                  </div>
+                </div>
+
+                <div class="form-group mb-1">
+                  <label>Description</label>
+                  <textarea
+                    type="text"
+                    class="form-control"
+                    formControlName="description"
+                    [ngClass]="{
+                      'is-invalid': addEditCourse && f['description'].errors
+                    }"
+                  ></textarea>
+                  <div
+                    *ngIf="addEditCourse && f['description']?.errors"
+                    class="invalid-feedback"
+                  >
+                    <div *ngIf="f['description'].errors?.['required']">
+                      description is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+              #closeUpdateAdd
+            >
+              Close
+            </button>
+
+            <button
+              type="submit"
+              class="btn btn-primary"
+              (click)="addNewCourse()"
+              *ngIf="!addEditCourse"
+              [disabled]="!courseForm.valid"
+            >
+              Add
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="updateProduct()"
+              *ngIf="addEditCourse"
+              [disabled]="!courseForm.valid"
+            >
+              Update
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <!-- Delete Modal -->
+    <div
+      class="modal fade"
+      id="deleteModel"
+      tabindex="-1"
+      aria-labelledby="deleteModelLabel"
+      aria-hidden="false"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-body">
+            Are you sure you want do delete this item?
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              #closebutton
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="deletProduct()"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
