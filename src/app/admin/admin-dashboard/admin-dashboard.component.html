@@ -1,23 +1,36 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
-    <div class="col-12">
-      <a class="d-inline-block" routerLink="/course-crud">
-        <div class="item-div">
-          <p class="text-success">Courses</p>
-        </div></a
+    <div class="col-3 admin-side">
+      <a
+        class="d-inline-block item-div"
+        routerLink="course"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
       >
+        <p class="text-success">Courses</p>
+      </a>
 
-      <a class="d-inline-block" routerLink="/user-crud"
-        ><div class="item-div">
-          <p class="text-danger">Users</p>
-        </div></a
+      <a
+        class="d-inline-block item-div"
+        routerLink="user"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
       >
+        <p class="text-danger">Users</p>
+      </a>
 
-      <a class="d-inline-block" routerLink="/subject-crud"
-        ><div class="item-div">
-          <p class="text-warning">Subjects</p>
-        </div></a
+      <a
+        class="d-inline-block item-div"
+        routerLink="subject"
+        [routerLinkActiveOptions]="{ exact: true }"
+        routerLinkActive="active"
       >
+        <p class="text-warning">Subjects</p>
+      </a>
+    </div>
+
+    <div class="col-9">
+      <router-outlet />
     </div>
   </div>
 </div>

@@ -4,7 +4,7 @@ import { Course } from '../../core/models/object-model';
 import { CourseItemComponent } from '../course-item/course-item.component';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { FilterPipe } from '../../shared/pipes/filter.pipe';
 import { AsideFilterComponent } from '../aside-filter/aside-filter.component';
 import { CommonModule } from '@angular/common';
@@ -29,7 +29,7 @@ export class CoursesListComponent implements OnInit {
     this.subjectId$ = this.route.params.pipe(map((params) => params['id']));
     this.showFilter = true;
   }
-  
+
   ngOnInit(): void {
     this.subjectId$.subscribe((subId) => {
       this.subjectId = +subId;
@@ -40,7 +40,7 @@ export class CoursesListComponent implements OnInit {
 
       setTimeout(() => {
         this.getAllCourses();
-      },20);
+      }, 20);
     });
 
     this.courseService.courses$.subscribe((resData) => {

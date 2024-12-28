@@ -1,13 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterModule } from '@angular/router';
 
-import {
-  FormBuilder,
-
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CourseService } from '../../services/course.service';
+import { LoginSignoutService } from '../../../admin/service/login-signout.service';
+import { User } from '../../../core/models/object-model';
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -20,27 +17,29 @@ export class HeaderComponent {
   router = inject(Router);
   fb = inject(FormBuilder);
   courseService = inject(CourseService);
+  loginSignoutService = inject(LoginSignoutService);
+  username: any;
+  role: any;
 
   // searchField: FormControl;
   // serchForm: FormGroup;
 
   constructor() {
-    // this.searchField = new FormControl();
-    // this.serchForm = this.fb.group({ search: this.searchField });
+    const user: User = JSON.parse(localStorage.getItem('user') || '{}');
+    this.loginSignoutService.setCurrentUser(user);
 
-    // this.searchField.valueChanges
-    //   .pipe(debounceTime(400))
-    //   .subscribe((result: any) => {
-    //     console.log(result);
-    //     this.searchService.onSearchVal.next(result);
-    //   });
+    this.loginSignoutService.currentUser$.subscribe((userdata) => {
+      this.username = userdata.name;
+      this.role = userdata.role;
+    });
   }
   searchProduct() {
-    
-     this.courseService.onSearchVal.next(this.searchText);
-    
-
+    this.courseService.onSearchVal.next(this.searchText);
     this.router.navigateByUrl('courses');
-    // this.productService.onSearchVal.next('');
+  }
+
+  logout() {
+    this.loginSignoutService.logout();
+    this.router.navigateByUrl('/');
   }
 }

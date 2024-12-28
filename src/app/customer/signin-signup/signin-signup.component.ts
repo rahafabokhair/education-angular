@@ -52,18 +52,28 @@ export class SigninSignupComponent {
       const password = formValue.value.password;
 
       this.loginSignoutService.Login(email, password).subscribe((userdata) => {
-
-        if (userdata.length > 0) {
-          localStorage.setItem('user_session_id', userdata[0].id);
-          localStorage.setItem('role', userdata[0].role);
-          if (userdata[0].role == 'admin') {
-            this.router.navigateByUrl('admin-dashboard');
+        if (userdata) {
+          if (userdata.role == 'admin') {
+            this.router.navigateByUrl('admin');
           } else {
             this.router.navigateByUrl('courses');
           }
         } else {
           alert('this account is not found');
         }
+
+        // if (userdata.length > 0) {
+        //   // localStorage.setItem('user_session_id', userdata[0].id);
+        //   // localStorage.setItem('role', userdata[0].role);
+        //   // localStorage.setItem('name', userdata[0].name);
+        //   // if (userdata[0].role == 'admin') {
+        //   //   this.router.navigateByUrl('admin-dashboard');
+        //   // } else {
+        //   //   this.router.navigateByUrl('courses');
+        //   // }
+        // } else {
+        //   alert('this account is not found');
+        // }
       });
     }
   }
@@ -82,23 +92,20 @@ export class SigninSignupComponent {
       gender: this.signupForm.value.gender,
       role: 'student',
       age: this.signupForm.value.age,
-      image:''
+      image: '',
     };
 
     this.loginSignoutService
       .signup(this.signupUser)
       .subscribe((userdata: any) => {
-
         if (userdata) {
-          localStorage.setItem('user_session_id', userdata.id);
-          localStorage.setItem('role', userdata.role);
           this.router.navigateByUrl('courses');
           this.signupForm.reset();
-        } else {
+        } else
+         {
           alert('somthing error');
         }
       });
-  
   }
 
   get f(): { [key: string]: AbstractControl } {

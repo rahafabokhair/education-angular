@@ -60,8 +60,10 @@ export class User {
     public gender: string,
     public role: string,
     public age: string,
-     public image: string,
-    public id?: number,
-   
+    public image: string,
+    public id?: number
   ) {}
+}
+export class UserCourse {
+  constructor(public userId: number, public coursesNum: string) {}
 }

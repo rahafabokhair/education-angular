@@ -9,16 +9,51 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { CorurseCrudComponent } from './admin/corurse-crud/corurse-crud.component';
 import { SubjectCrudComponent } from './admin/subject-crud/subject-crud.component';
 import { UserCrudComponent } from './admin/user-crud/user-crud.component';
+import { AuthGuard } from './shared/guards/auth.guard';
+import { PageNotFoundComponent } from './shared/layout/page-not-found/page-not-found.component';
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent },
-  { path: 'courses', component: CoursehomepageComponent },
+  {
+    path: 'courses',
+    component: CoursehomepageComponent,
+  },
   { path: 'courses/:id', component: CourseDetailsComponent },
-  { path: 'subject', component: SubjectComponent },
+  {
+    path: 'subject',
+    component: SubjectComponent,
+  },
   { path: 'subject/:id', component: CoursesListComponent },
   { path: 'auth', component: SigninSignupComponent },
-  { path: 'admin-dashboard', component: AdminDashboardComponent },
-  { path: 'course-crud', component: CorurseCrudComponent },
-  { path: 'subject-crud', component: SubjectCrudComponent },
-  { path: 'user-crud', component: UserCrudComponent },
+
+  {
+    path: 'admin',
+    component: AdminDashboardComponent,
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    children: [
+      {
+        path: '',
+        redirectTo: 'course',
+        pathMatch: 'full',
+      },
+      {
+        path: 'course',
+        component: CorurseCrudComponent,
+      },
+      {
+        path: 'subject',
+        component: SubjectCrudComponent,
+      },
+      { path: 'user', component: UserCrudComponent },
+    ],
+  },
+  { path: 'not-found', component: PageNotFoundComponent },
+
+  { path: '**', redirectTo: '/not-found' },
+  // {
+  //   path: 'subject-crud',
+  //   component: SubjectCrudComponent,
+  //   canActivate: [AuthGuard],
+  // },
 ];
