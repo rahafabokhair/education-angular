@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { User } from '../../core/models/object-model';
+import { Course, User } from '../../core/models/object-model';
 import { BehaviorSubject, map, Observable, Subject, tap } from 'rxjs';
 import { environment } from '../../../environments/environment.development';
 import { ApiService } from '../../core/services/api.service';
@@ -92,4 +92,6 @@ export class UserCrudService {
       })
     );
   }
+
+
 }

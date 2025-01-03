@@ -11,6 +11,7 @@ import { SubjectCrudComponent } from './admin/subject-crud/subject-crud.componen
 import { UserCrudComponent } from './admin/user-crud/user-crud.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { PageNotFoundComponent } from './shared/layout/page-not-found/page-not-found.component';
+import { UserCoursesListComponent } from './course/user-courses-list/user-courses-list.component';
 
 export const routes: Routes = [
   { path: '', component: HomepageComponent },
@@ -18,7 +19,9 @@ export const routes: Routes = [
     path: 'courses',
     component: CoursehomepageComponent,
   },
-  { path: 'courses/:id', component: CourseDetailsComponent },
+  { path: 'courses/:id', component: CourseDetailsComponent }
+  ,
+  { path: 'coursesList', component: UserCoursesListComponent },
   {
     path: 'subject',
     component: SubjectComponent,

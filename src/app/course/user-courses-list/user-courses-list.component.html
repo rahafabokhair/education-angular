@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-8" *ngIf="userCoursesList.length === 0">
+      No courses found for this user.
+    </div>
+    <!-- <div class="col-8">
+      @for (item of userCoursesList; track $index) {
+      <p>{{ item.title }}</p>
+      }
+    </div> -->
+
+    <div class="col-8" *ngIf="userCoursesList.length >= 0">
+      <ul>
+        @for (item of userCoursesList; track $index) {
+        <li>{{ item.title }} : <br> {{ item.description }}</li><br>
+        }
+      </ul>
+    </div>
+  </div>
+</div>

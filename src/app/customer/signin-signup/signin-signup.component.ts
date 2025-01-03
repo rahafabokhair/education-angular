@@ -90,6 +90,7 @@ export class SigninSignupComponent {
       password: this.signupForm.value.password,
       mobNumber: this.signupForm.value.mobNumber,
       gender: this.signupForm.value.gender,
+      courses:[],
       role: 'student',
       age: this.signupForm.value.age,
       image: '',

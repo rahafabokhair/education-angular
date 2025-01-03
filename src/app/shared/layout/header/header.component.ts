@@ -21,8 +21,6 @@ export class HeaderComponent {
   username: any;
   role: any;
 
-  // searchField: FormControl;
-  // serchForm: FormGroup;
 
   constructor() {
     const user: User = JSON.parse(localStorage.getItem('user') || '{}');

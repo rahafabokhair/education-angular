@@ -73,6 +73,7 @@ export class UserCrudComponent implements OnInit {
       mobNumber: this.userForm.value.mobNumber,
       gender: this.userForm.value.gender,
       role: this.userForm.value.role,
+      courses:[],
       age: this.userForm.value.age,
       image: this.userForm.value.image ? this.userForm.value.image : '',
     };
@@ -112,6 +113,7 @@ export class UserCrudComponent implements OnInit {
       gender: this.userForm.value.gender,
       role: this.userForm.value.role,
       age: this.userForm.value.age,
+      courses:[],
       image:
         this.userForm.value.image == ''
           ? this.imageName

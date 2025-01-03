@@ -35,10 +35,16 @@
             {{ courseInfo.authors[0].lastName }}
           </h6>
         </div>
-        <!-- <div class="enroll">
-          <button class="btn btn-primary" (click)="enroll()">Enroll</button>
-          <span>Enroll to start your full access free trial</span>
-        </div> -->
+        <div class="enroll">
+          <button
+            class="btn btn-primary"
+            [disabled]="register"
+            (click)="enroll(courseInfo)"
+          >
+            {{ !register ? "enroll" : "already enrolled" }}
+          </button>
+          <span> {{ !register ? "Enroll to start your full access free trial" : "" }} </span>
+        </div>
       </div>
     </div>
   </div>

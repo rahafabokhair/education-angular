@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { ApiService } from '../../core/services/api.service';
 import { environment } from '../../../environments/environment.development';
 import { BehaviorSubject, map, Observable, tap } from 'rxjs';
-import { Course, Subject } from '../../core/models/object-model';
+import { Course, Subject, User } from '../../core/models/object-model';
 import { HttpParams } from '@angular/common/http';
 
 @Injectable({
@@ -11,6 +11,7 @@ import { HttpParams } from '@angular/common/http';
 export class CourseService {
   courses_url = environment.server_url + '/courses/';
   subject_url = environment.server_url + '/subjects/';
+  user_url = environment.server_url + '/user/';
 
   courses$ = new BehaviorSubject<Course[]>([]);
 
@@ -74,4 +75,12 @@ export class CourseService {
   // getcoursepersubjectId(subId:number): Observable<Course[]>{
   //   return this.apiService.get(this.courses_url+"?subjectId="+subId);
   // }
+
+  // getUserPerId(id: number): Observable<User> {
+  //   return this.apiService.get(this.user_url + id);
+  // }
+
+  getUserCourses(localuser: User): Observable<User> {
+    return this.apiService.get(this.user_url + localuser.id);
+  }
 }

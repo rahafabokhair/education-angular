@@ -61,9 +61,10 @@ export class User {
     public role: string,
     public age: string,
     public image: string,
+    public courses: Course[],
     public id?: number
   ) {}
 }
-export class UserCourse {
-  constructor(public userId: number, public coursesNum: string) {}
-}
+// export class UserCourse {
+//   constructor(public userId: number, public coursesNum: string) {}
+// }
