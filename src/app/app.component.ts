@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './shared/layout/header/header.component';
+import { BreadcrumbsComponent } from './course/breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-root',

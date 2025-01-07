@@ -14,19 +14,23 @@ import { PageNotFoundComponent } from './shared/layout/page-not-found/page-not-f
 import { UserCoursesListComponent } from './course/user-courses-list/user-courses-list.component';
 
 export const routes: Routes = [
-  { path: '', component: HomepageComponent },
+  { path: '', component: HomepageComponent, data: { breadcrumb: 'Home' } },
   {
     path: 'courses',
     component: CoursehomepageComponent,
   },
-  { path: 'courses/:id', component: CourseDetailsComponent }
-  ,
+  {
+    path: 'courses/:id',
+    component: CourseDetailsComponent,
+  },
   { path: 'coursesList', component: UserCoursesListComponent },
+
   {
     path: 'subject',
     component: SubjectComponent,
   },
   { path: 'subject/:id', component: CoursesListComponent },
+
   { path: 'auth', component: SigninSignupComponent },
 
   {
@@ -51,6 +55,7 @@ export const routes: Routes = [
       { path: 'user', component: UserCrudComponent },
     ],
   },
+
   { path: 'not-found', component: PageNotFoundComponent },
 
   { path: '**', redirectTo: '/not-found' },

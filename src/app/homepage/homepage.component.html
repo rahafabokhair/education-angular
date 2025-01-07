@@ -1,2 +1,12 @@
 <app-subject></app-subject>
-<app-courses-list></app-courses-list>
+<!-- <app-courses-list></app-courses-list> -->
+<div class="container">
+  <div class="row">
+    @for (course of courseList;track $index) {
+    <app-course-item
+      [course]="course"
+      class="col-lg-4 col-md-6 mb-4 pointer"
+    ></app-course-item>
+    }
+  </div>
+</div>

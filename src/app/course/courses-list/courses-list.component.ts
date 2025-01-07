@@ -25,16 +25,29 @@ export class CoursesListComponent implements OnInit {
 
   searchText = '';
   showFilter = false;
+
+  //pagenator variables
+
+  paginatedCourses: any[] = [];
+  pageSize = 6; // Number of Courses per page
+  currentPage = 1; // Current page index
+  totalPages = 0;
+  pages: number[] = [];
+  showPageinator = true;
+
   constructor() {
     this.subjectId$ = this.route.params.pipe(map((params) => params['id']));
+
     this.showFilter = true;
   }
 
   ngOnInit(): void {
+   
+    
     this.subjectId$.subscribe((subId) => {
       this.subjectId = +subId;
     });
-
+    console.log(this.subjectId);
     this.courseService.onSearchVal.subscribe((data) => {
       this.searchText = data;
 
@@ -45,7 +58,9 @@ export class CoursesListComponent implements OnInit {
 
     this.courseService.courses$.subscribe((resData) => {
       this.coursesList = resData;
+      this.updatePagination();
     });
+
   }
 
   getAllCourses() {
@@ -58,5 +73,31 @@ export class CoursesListComponent implements OnInit {
         this.coursesList = data;
       }
     });
+  }
+
+  // pagenator part
+  updatePagination(): void {
+    this.showPageinator = true;
+    this.totalPages = Math.ceil(this.coursesList.length / this.pageSize);
+    this.pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
+    this.updatePaginatedCourses();
+  }
+
+  changePage(page: number): void {
+    if (page < 1 || page > this.totalPages) {
+      return;
+    }
+    this.currentPage = page;
+    this.updatePaginatedCourses();
+  }
+
+  updatePaginatedCourses(): void {
+    const startIndex = (this.currentPage - 1) *  this.pageSize;
+    const endIndex = startIndex + this.pageSize;
+    this.paginatedCourses = this.coursesList.slice(startIndex, endIndex);
+    
+    if (this.coursesList.length > 0 && this.searchText =='' &&!this.subjectId) {
+      this.showPageinator = false;
+    }
   }
 }

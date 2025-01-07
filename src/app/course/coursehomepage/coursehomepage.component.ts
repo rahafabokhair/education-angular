@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AsideFilterComponent } from "../aside-filter/aside-filter.component";
 import { CoursesListComponent } from "../courses-list/courses-list.component";
+import { BreadcrumbsComponent } from '../breadcrumbs/breadcrumbs.component';
 
 @Component({
   selector: 'app-coursehomepage',

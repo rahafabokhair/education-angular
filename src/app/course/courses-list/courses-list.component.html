@@ -1,6 +1,5 @@
-
-<div class="container-fluid ">
-  <div class="container ">
+<div class="container-fluid">
+  <div class="container">
     <div class="row">
       <div class="col-12">
         <div class="text-center mb-5">
@@ -13,12 +12,42 @@
           <h1>Our Popular Courses</h1>
         </div>
         <div class="row">
-          @for (course of coursesList| filter:searchText; track $index) {
+          @for (course of paginatedCourses| filter:searchText; track $index) {
           <app-course-item
             [course]="course"
             class="col-lg-4 col-md-6 mb-4 pointer"
           ></app-course-item>
           }
+
+          <!-- //paginator -->
+           @if (!showPageinator) {
+          <div class="pagination-controls modern-pagination" >
+            <button
+              (click)="changePage(currentPage - 1)"
+              [disabled]="currentPage === 1"
+              class="pagination-button prev"
+            >
+              Previous
+            </button>
+
+            <button
+              class="pagination-button"
+              *ngFor="let page of pages"
+              (click)="changePage(page)"
+              [class.active]="page === currentPage"
+            >
+              {{ page }}
+            </button>
+
+            <button
+              class="pagination-button next"
+              (click)="changePage(currentPage + 1)"
+              [disabled]="currentPage === totalPages"
+            >
+              Next
+            </button>
+          </div>
+        }
         </div>
       </div>
     </div>
