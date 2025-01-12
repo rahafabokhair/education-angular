@@ -4,7 +4,7 @@ educational portal where admin can add courses and customer can view this course
 
 ## Project Setup:
 ### Step 1:
-clone the project: git clone git@github.com:rahafabokhair/education-angular.git
+clone the project: git clone https://github.com/rahafabokhair/education-angular.git
 
 ### Step 2:
 
