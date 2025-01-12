@@ -1,27 +1,43 @@
-# ProjectAngular
+# angular-education
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.10.
+educational portal where admin can add courses and customer can view this courses and enroll into it.
 
-## Development server
+## Project Setup:
+### Step 1:
+clone the project: git clone git@github.com:rahafabokhair/education-angular.git
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+### Step 2:
 
-## Code scaffolding
+cd education-angular
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Step 3:
 
-## Build
+git pull origin Master
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Step 4:
+Install Node form https://nodejs.org/en/
+### Step 5:
+npm install
+### Step 6:
+pm install -g json-server (Install JSON mock server)
+### Step 7:
+npm install -g @angular/cli (Install angular CLI)
+### Step 8:
+Open two terminal/command prompt
+### Step 9:
+In one terminal run command: ng serve
+### Step 10:
+In another terminal run command: json-server --watch db.json
+Note: if you found any error at the time of installation just clear the cache (npm cache clean -- force)
+Now you can ready to go
 
-## Running unit tests
+### Step 11:
+Open your browser and type: http://localhost: 4200
+If you want to see the mock api on your browser you can hit the below link
+http://localhost:3000/
+If you want to learn more on mock API you can go through the doc https://www.npmjs.com/package/son-server
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## Project Documentation:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+https://docs.google.com/document/d/1pEZXQGbLda_wh4Ciflw4ho30JjWQbr9mxChMkfJCGiU/edit?pli=1&tab=t.0
